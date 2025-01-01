@@ -5,5 +5,5 @@ OSC over wifi to MIDI, for controlling DMX controller. targeting QLC+  and Stran
 # installation instruction on RPI:
 
 besides the python packages as in requirements.txt: 
-sudo apt-get install libasound2-dev 
-sudo apt-get install libjack-dev 
+- sudo apt-get install libasound2-dev 
+- sudo apt-get install libjack-dev 
