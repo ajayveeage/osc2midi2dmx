@@ -1,8 +1,7 @@
 from pythonosc.dispatcher import Dispatcher
 from typing import List, Any
-
-dispatcher = Dispatcher()
-
+from pythonosc.osc_server import BlockingOSCUDPServer
+import mido
 
 
 def set_note(address: str,  *args: List[Any]) ->  None:
@@ -40,9 +39,14 @@ def set_note(address: str,  *args: List[Any]) ->  None:
 
 print("Running Osc2Midi")
 
+#setting up osc dispatcher
+dispatcher = Dispatcher()
 dispatcher.map("/0/dmx/*", set_note)
 
-from pythonosc.osc_server import BlockingOSCUDPServer
+#setting up mido
+mido_ports = mido.get_output_names()
+print(f"mido ports: {mido_ports}")
 
+#run OSC listinging server
 server = BlockingOSCUDPServer(("192.168.68.61", 9000), dispatcher)
 server.serve_forever()
